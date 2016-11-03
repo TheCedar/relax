@@ -1,0 +1,109 @@
+html {
+    height: 100%;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei';
+    font-size: 16px;
+    line-height: 1.5;
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/bg.jpg);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+canvas#bg {
+    position: fixed;
+    z-index: -1;
+}
+section.side-bar {
+    position: fixed;
+    right: 0;
+    width: 240px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+#sound-list li {
+    width: 100%;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0.6;
+}
+#sound-list .icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    background-image: url(../images/icon-sprite.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 720px 60px;
+    background-size: 720px 60px;
+}
+.icon-rain {
+    background-position: 0 0;
+}
+.icon-thunder {
+    background-position: -540px 0;
+}
+.sound-icon {
+    float: left;
+    width: 80px;
+    height: 80px;
+}
+.control-block {
+    float: left;
+    width: 140px;
+    height: 60px;
+    padding: 10px;
+}
+.control-block h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: #fff;
+    transform: translateY(12px);
+    transition: transform 300ms ease-in;
+}
+.control-block h4 small {
+    margin-left: 10px;
+}
+.control-bar {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 4px;
+    margin-top: 12px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+.slider {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    margin-top: -5px;
+    margin-left: -7px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+#sound-list li.active {
+    opacity: 1;
+}
+#sound-list li.active h4 {
+    margin-top: 0;
+    transform: translateY(0);
+}
+#sound-list li.active .control-bar {
+    display: block;
+}
