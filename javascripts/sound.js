@@ -117,8 +117,14 @@
         this.initStatus = false;
         this.player = target;
         this.audio = target.querySelector('audio');
+        
+        // 开始加载音频
+        if (this.audio.preload === 'none') {
 
-        this.player.addEventListener('click', this.init.bind(this), false);
+            this.audio.load();
+        }
+
+        this.audio.addEventListener('canplaythrough', this.init.bind(this), false);
     }
 
     Player.prototype = {
@@ -126,24 +132,18 @@
         constructor: Player,
 
         init: function () {
-
+            
             if (!this.initStatus) {
-
+                
                 this.initStatus = true;
 
-                // 开始加载音频
-                if (this.audio.preload === 'none') {
-
-                    this.audio.load();
-                }
-
                 this.play();
-                
+
                 if (Player.muted) {
-                    
+
                     this.audio.mute();
                 } else {
-                    
+
                     this.audio.volume = this._randomVolume();
                 }
 
@@ -153,28 +153,17 @@
                     this.setVolume(value);
                 }.bind(this));
                 this.control.setValue(this.audio.volume);
-            } else {
-
-                if (this.audio.paused) {
-
-                    this.play();
-                } else {
-
-                    this.pause();
-                }
             }
         },
 
         play: function () {
 
             this.audio.play();
-            this.player.classList.add('active');
         },
 
         pause: function () {
 
             this.audio.pause();
-            this.player.classList.remove('active');
         },
 
         _randomVolume: function () {
@@ -189,7 +178,7 @@
 
         setVolume: function (value) {
 
-            this.audio.volume = value;
+            this.audio.volume = +value.toFixed(2);
         },
         
         mute: function () {
@@ -206,8 +195,27 @@
     list.forEach(function (item) {
 
         var type = item.dataset.sound;
+        
+        item.addEventListener('click', function () {
+            
+            if (!register[type]) {
+                
+                register[type] = new Player(item);
+                item.classList.add('active');
+            } else {
+                
+                if (register[type].audio.paused) {
 
-        register[type] = new Player(item);
+                    register[type].play();
+                    item.classList.add('active');
+                } else {
+
+                    register[type].pause();
+                    item.classList.remove('active');
+                }
+            }
+        }, false);
+        
     });
     
     // 为设置按钮注册事件

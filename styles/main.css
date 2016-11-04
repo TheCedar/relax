@@ -4,6 +4,10 @@ html {
     line-height: 1.5;
 
     height: 100%;
+
+    background-color: #f5f5f5;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -27,7 +31,6 @@ ul {
 
 canvas#bg {
     position: fixed;
-    z-index: -1;
 }
 
 span.setup {
@@ -259,6 +262,8 @@ section.side-bar {
     height: 100%;
 
     background-color: rgba(0, 0, 0, .2);
+
+    -webkit-overflow-scrolling: touch;
 }
 
 #sound-list li {
@@ -368,8 +373,8 @@ section.side-bar {
             transition: -webkit-transform 300ms ease;
             transition:         transform 300ms ease;
             transition:         transform 300ms ease, -webkit-transform 300ms ease;
-    -webkit-transform: translateY(12px);
-            transform: translateY(12px);
+    -webkit-transform: translateY(18px);
+            transform: translateY(18px);
 
     color: #fff;
 }
@@ -433,17 +438,6 @@ section.side-bar {
     opacity: 1;
 }
 
-#sound-list li.active h4 {
-    margin-top: 0;
-
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-}
-
-#sound-list li.active .control-bar {
-    display: block;
-}
-
 section.side-bar.visible {
     -webkit-transform: translateX(0);
             transform: translateX(0);
@@ -473,4 +467,17 @@ section.side-bar.visible #sound-list {
     display: block;
 
     opacity: .8;
+}
+
+@media (min-width: 980px) {
+    #sound-list li.active h4 {
+        margin-top: 0;
+
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+
+    #sound-list li.active .control-bar {
+        display: block;
+    }
 }
